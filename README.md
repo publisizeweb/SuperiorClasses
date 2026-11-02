@@ -6,11 +6,13 @@ Design: bold, immersive, dark-led, with a scroll-expanding hero reel, a pinned h
 
 ```bash
 npm install
-npm run dev       # local preview at http://127.0.0.1:5173
+npm run dev       # http://localhost:5190 ("under construction" page); the site is at /sc-preview-5x62jce2rg/
 npm run build     # production files in dist/ (upload this folder to any static host)
 ```
 
 ## Before going live
+
+0. **Launch switch.** Until launch, `/` shows the "under construction" page (`index.html`, `src/construction/`) and the real site lives at the private path `/sc-preview-5x62jce2rg/` (shared only with the client, marked `noindex`). To launch: replace `index.html` with `sc-preview-5x62jce2rg/index.html`, remove the `robots` meta line and fix the canonical/og:url back to `%VITE_SITE_URL%/`, delete `src/construction/` and the `build.rollupOptions` + `previewSlash` bits in `vite.config.js`.
 
 1. **Contact details** (required). Edit the `SITE` block at the top of [src/data/site.js](src/data/site.js):
    - `whatsapp`: country code plus number, digits only (e.g. `919876543210`). Every WhatsApp button and the enquiry form use it.
