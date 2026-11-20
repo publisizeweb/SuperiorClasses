@@ -9,8 +9,8 @@ import { NAV, telLink, waLink } from '../data/site'
 import { WhatsAppIcon } from './ui'
 
 const OWNER = {
-  home: 'home', reel: 'home', numbers: 'home', manifesto: 'home', worlds: 'worlds', story: 'story', measure: 'story',
-  approach: 'approach', research: 'approach', gallery: 'gallery', voices: 'gallery', vision: 'gallery', contact: 'contact',
+  home: 'home', reel: 'home', manifesto: 'home', story: 'story', measure: 'story',
+  approach: 'approach', research: 'approach', vision: 'approach', contact: 'contact',
 }
 
 export default function Header() {

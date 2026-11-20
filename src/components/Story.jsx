@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
-import { Hand, Lightbulb, Quote, Smile } from 'lucide-react'
+import { ArrowUpRight, Hand, Lightbulb, Quote, Smile } from 'lucide-react'
+import { SITE } from '../data/site'
 import director from '../assets/soneeka-bagade.jpg'
 import { GridBg, MaskLines, Reveal } from './ui'
 
@@ -120,7 +121,7 @@ function Director() {
               >
                 <motion.img
                   src={director}
-                  alt="Soneeka Bagade, Director of Superior Classes, teaching in a classroom"
+                  alt="Soneeka Bagade, Director of Superior Classes, at her desk"
                   className="aspect-square w-full object-cover object-top"
                   variants={{ hidden: { scale: 1.25 }, show: { scale: 1 } }}
                   transition={{ duration: 1.6, ease }}
@@ -190,6 +191,25 @@ function Director() {
                 child is seen for who they truly are.
               </p>
             </Reveal>
+
+            {SITE.directorLinkedin && (
+              <Reveal delay={0.15} className="mt-6">
+                <a
+                  href={SITE.directorLinkedin}
+                  target="_blank"
+                  rel="noopener"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-white py-2 pl-2 pr-4 text-[0.92rem] font-semibold text-navy ring-1 ring-navy/10 transition hover:ring-navy/30"
+                >
+                  <span className="grid h-8 w-8 place-items-center rounded-full bg-[#0A66C2] text-white" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                      <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.83v1.54h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13V21h-4v-4.96c0-1.18-.02-2.7-1.65-2.7-1.65 0-1.9 1.29-1.9 2.62V21h-4z" />
+                    </svg>
+                  </span>
+                  Connect with Soneeka on LinkedIn
+                  <ArrowUpRight className="h-4 w-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              </Reveal>
+            )}
 
             <motion.blockquote
               initial={{ opacity: 0, x: 60 }}

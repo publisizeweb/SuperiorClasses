@@ -128,11 +128,11 @@ function Reel() {
             <p className="display mt-4 max-w-5xl text-[clamp(1.60rem,min(3.81vw,4.76vh),3.43rem)]">
               Academics, arts, sports & the <span className="serif-i text-gold">real world.</span>
             </p>
-            <a href="#worlds" className="mt-8 inline-flex items-center gap-3 text-[0.95rem] font-semibold text-white/85 hover:text-white">
+            <a href="#story" className="mt-8 inline-flex items-center gap-3 text-[0.95rem] font-semibold text-white/85 hover:text-white">
               <span className="grid h-11 w-11 place-items-center rounded-full ring-1 ring-white/40">
                 <ArrowDown className="h-4 w-4" />
               </span>
-              Explore the six worlds
+              Discover our story
             </a>
           </motion.div>
         </motion.div>

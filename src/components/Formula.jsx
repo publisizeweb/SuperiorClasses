@@ -3,14 +3,6 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { BookOpen, Hammer, HeartHandshake } from 'lucide-react'
 import { Chalk, GridBg, MaskLines, Reveal } from './ui'
 
-/* four colour blocks, like the logo: green page, gold page, navy base, plus a light tile */
-const NUMBERS = [
-  { n: '12–17', label: 'Age group we teach', tile: 'bg-leaf-700 text-white', sub: 'text-white/80', grid: 'dark' },
-  { n: '06', label: 'Worlds of learning', tile: 'bg-sun text-ink', sub: 'text-ink/70', grid: 'ink' },
-  { n: '03', label: 'Pillars of education', tile: 'bg-navy text-white', sub: 'text-white/75', grid: 'dark' },
-  { n: '01', label: 'Visionary director', tile: 'bg-paper text-navy', sub: 'text-ink-2', grid: 'light' },
-]
-
 const PILLARS = [
   { n: '01', Icon: Hammer, title: 'Practical skills', text: 'Character built through doing: physical, ethical, intellectual and spiritual strength.', bar: 'border-leaf', chip: 'bg-leaf-100 text-leaf-700', num: 'text-leaf/15' },
   { n: '02', Icon: BookOpen, title: 'Theoretical knowledge', text: 'Understanding the why behind every concept, not just the answer at the back of the book.', bar: 'border-blue', chip: 'bg-sky-100 text-blue', num: 'text-blue/10' },
@@ -69,19 +61,6 @@ function Manifesto() {
 export default function Formula() {
   return (
     <>
-      {/* numbers band */}
-      <section id="numbers" className="grid grid-cols-2 lg:grid-cols-4">
-        {NUMBERS.map(({ n, label, tile, sub, grid }, i) => (
-          <div key={label} className={`relative overflow-hidden ${tile}`}>
-            <GridBg tone={grid} fade="none" className="opacity-50" />
-            <Reveal delay={i * 0.08} className="relative px-5 py-8 sm:px-8 lg:px-10 lg:py-10">
-              <p className="display text-[clamp(2rem,min(4.35vw,5.44vh),3.43rem)]">{n}</p>
-              <p className={`mt-2 text-[0.92rem] font-semibold ${sub}`}>{label}</p>
-            </Reveal>
-          </div>
-        ))}
-      </section>
-
       <Manifesto />
 
       {/* the formula */}

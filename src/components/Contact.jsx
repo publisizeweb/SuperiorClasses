@@ -201,9 +201,9 @@ export default function Contact() {
               </Reveal>
               <Reveal delay={0.15} className="relative mt-8 min-h-80 flex-1 overflow-hidden rounded-[22px] ring-1 ring-line">
                 {/* The iframe is shifted up 170px so Google's place card (top-left) sits outside the visible frame.
-                    For an exact pin, update SITE.mapsQuery / mapsLink in src/data/site.js */}
+                    The pin comes from SITE.mapsLat / mapsLng in src/data/site.js */}
                 <iframe
-                  title="Map showing the Town Centre area of Chhatrapati Sambhajinagar, where Superior Classes is located"
+                  title="Map showing the location of Superior Classes at Suraj Palace, Town Centre, Chhatrapati Sambhajinagar"
                   src={mapEmbedSrc}
                   className="absolute inset-x-0 -top-[170px] h-[calc(100%+170px)] w-full border-0 grayscale-[35%]"
                   loading="lazy"

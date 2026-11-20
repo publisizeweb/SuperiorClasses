@@ -7,60 +7,76 @@ import { GridBg, WhatsAppIcon } from './ui'
 
 const YEAR = new Date().getFullYear()
 
+/* footer social icons: each shows only when its link is set in SITE (src/data/site.js) */
 const SOCIAL = [
-  ['instagram', 'Instagram', 'M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM16.5 2h-9A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2zm3.7 14.5a3.7 3.7 0 0 1-3.7 3.7h-9a3.7 3.7 0 0 1-3.7-3.7v-9a3.7 3.7 0 0 1 3.7-3.7h9a3.7 3.7 0 0 1 3.7 3.7z'],
-  ['facebook', 'Facebook', 'M14 8h3V4h-3c-2.8 0-5 2.2-5 5v2H7v4h2v9h4v-9h3l1-4h-4V9c0-.6.4-1 1-1z'],
-  ['youtube', 'YouTube', 'M23 7.5s-.2-1.6-.9-2.3c-.9-.9-1.9-.9-2.3-1C16.6 4 12 4 12 4s-4.6 0-7.8.2c-.4.1-1.4.1-2.3 1C1.2 5.9 1 7.5 1 7.5S.8 9.4.8 11.2v1.7c0 1.9.2 3.7.2 3.7s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.6.2 7.6.2s4.6 0 7.8-.3c.4-.1 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.7v-1.7C23.2 9.4 23 7.5 23 7.5zM9.7 15.1V8.9l6 3.1-6 3.1z'],
+  { key: 'instagram', label: 'Superior Classes on Instagram', d: 'M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM16.5 2h-9A5.5 5.5 0 0 0 2 7.5v9A5.5 5.5 0 0 0 7.5 22h9a5.5 5.5 0 0 0 5.5-5.5v-9A5.5 5.5 0 0 0 16.5 2zm3.7 14.5a3.7 3.7 0 0 1-3.7 3.7h-9a3.7 3.7 0 0 1-3.7-3.7v-9a3.7 3.7 0 0 1 3.7-3.7h9a3.7 3.7 0 0 1 3.7 3.7z' },
+  { key: 'directorLinkedin', label: 'Soneeka Bagade on LinkedIn', d: 'M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.83v1.54h.05c.53-1 1.84-2.06 3.79-2.06 4.05 0 4.8 2.67 4.8 6.13V21h-4v-4.96c0-1.18-.02-2.7-1.65-2.7-1.65 0-1.9 1.29-1.9 2.62V21h-4z' },
+  { key: 'facebook', label: 'Superior Classes on Facebook', d: 'M14 8h3V4h-3c-2.8 0-5 2.2-5 5v2H7v4h2v9h4v-9h3l1-4h-4V9c0-.6.4-1 1-1z' },
+  { key: 'youtube', label: 'Superior Classes on YouTube', d: 'M23 7.5s-.2-1.6-.9-2.3c-.9-.9-1.9-.9-2.3-1C16.6 4 12 4 12 4s-4.6 0-7.8.2c-.4.1-1.4.1-2.3 1C1.2 5.9 1 7.5 1 7.5S.8 9.4.8 11.2v1.7c0 1.9.2 3.7.2 3.7s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.6.2 7.6.2s4.6 0 7.8-.3c.4-.1 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.7v-1.7C23.2 9.4 23 7.5 23 7.5zM9.7 15.1V8.9l6 3.1-6 3.1z' },
 ]
 
+const HEAD = 'text-[0.74rem] font-bold uppercase tracking-[0.18em] text-white/45'
+const LINK = 'inline-flex items-center gap-2.5 py-1.5 text-white/80 transition hover:text-white'
+
 export function Footer() {
-  const socials = SOCIAL.filter(([k]) => SITE[k])
+  const socials = SOCIAL.filter(({ key }) => SITE[key])
   return (
     <footer className="relative overflow-hidden bg-night pb-28 pt-14 text-white/75 lg:pb-8">
       <GridBg tone="dark" fade="none" className="opacity-60" />
       <div className="brand-stripe absolute inset-x-0 top-0 h-1.5" aria-hidden="true" />
       <div className="container-x relative z-[2]">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-12">
-          <div className="col-span-2 lg:col-span-5">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+          {/* brand: logo, line, enquire, socials */}
+          <div className="col-span-2 lg:col-span-4">
             <img src={logoWhite} alt="Superior Classes: Learn, Lead, Succeed" className="w-36" loading="lazy" />
             <p className="mt-6 max-w-sm text-[0.97rem] leading-[1.75]">
               Learning beyond boundaries for curious minds aged 12–17, in the heart of Chhatrapati Sambhajinagar.
             </p>
-            <a href="#contact" className="btn btn-sun btn-sm mt-7">
-              Enquire now <span className="btn-chip"><ArrowRight /></span>
-            </a>
+            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-4">
+              <a href="#contact" className="btn btn-sun btn-sm">
+                Enquire now <span className="btn-chip"><ArrowRight /></span>
+              </a>
+              {socials.length > 0 && (
+                <ul className="flex gap-2" aria-label="Social media">
+                  {socials.map(({ key, label, d }) => (
+                    <li key={key}>
+                      <a href={SITE[key]} target="_blank" rel="noopener" aria-label={label} title={label} className="grid h-10 w-10 place-items-center rounded-full text-white ring-1 ring-white/15 transition hover:bg-white hover:text-ink">
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true"><path fill="currentColor" d={d} /></svg>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
-          <nav className="lg:col-span-2" aria-label="Footer">
-            <h3 className="text-[0.74rem] font-bold uppercase tracking-[0.18em] text-white/45">Explore</h3>
-            <ul className="mt-3 text-[0.95rem]">
+
+          <nav className="col-span-2 lg:col-span-2" aria-label="Footer">
+            <h3 className={HEAD}>Explore</h3>
+            <ul className="mt-4 flex flex-wrap gap-x-6 text-[0.95rem] lg:block lg:space-y-1">
               {NAV.map(({ id, label }) => (
-                <li key={id}><a href={`#${id}`} className="inline-block py-2 text-white/80 transition hover:text-white">{label}</a></li>
+                <li key={id}><a href={`#${id}`} className={LINK}>{label}</a></li>
               ))}
             </ul>
           </nav>
-          <div className="lg:col-span-2">
-            <h3 className="text-[0.74rem] font-bold uppercase tracking-[0.18em] text-white/45">Contact</h3>
-            <ul className="mt-3 text-[0.95rem]">
-              <li><a href={telLink} className="inline-flex items-center gap-2 py-2 text-white/80 hover:text-white"><Phone className="h-4 w-4 text-sun" />{SITE.phoneDisplay || 'Call us'}</a></li>
-              <li><a href={waLink()} target="_blank" rel="noopener" className="inline-flex items-center gap-2 py-2 text-white/80 hover:text-white"><WhatsAppIcon className="h-4 w-4 text-sun" />WhatsApp</a></li>
-              {SITE.email && <li><a href={`mailto:${SITE.email}`} className="inline-flex items-center gap-2 py-2 text-white/80 hover:text-white"><Mail className="h-4 w-4 text-sun" />{SITE.email}</a></li>}
-            </ul>
-          </div>
-          <div className="col-span-2 lg:col-span-3">
-            <h3 className="text-[0.74rem] font-bold uppercase tracking-[0.18em] text-white/45">Visit</h3>
-            <p className="mt-5 flex gap-2.5 text-[0.95rem] leading-[1.7] text-white/80">
+
+          <div className="col-span-2 sm:col-span-1 lg:col-span-3">
+            <h3 className={HEAD}>Visit</h3>
+            <p className="mt-4 flex gap-2.5 py-1.5 text-[0.95rem] leading-[1.7] text-white/80">
               <MapPin className="mt-1 h-4 w-4 shrink-0 text-sun" />
-              {SITE.address.join(' ')}
+              <span>{SITE.address.map((line) => <span key={line} className="block">{line}</span>)}</span>
             </p>
-            {socials.length > 0 && (
-              <div className="mt-6 flex gap-2">
-                {socials.map(([k, label, d]) => (
-                  <a key={k} href={SITE[k]} target="_blank" rel="noopener" aria-label={label} className="grid h-10 w-10 place-items-center rounded-full text-white ring-1 ring-white/15 hover:bg-white hover:text-ink">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true"><path fill="currentColor" d={d} /></svg>
-                  </a>
-                ))}
-              </div>
-            )}
+            <a href={directionsLink} target="_blank" rel="noopener" className={`${LINK} mt-1 text-[0.95rem] font-semibold text-sun hover:text-white`}>
+              <Navigation className="h-4 w-4" /> Get directions
+            </a>
+          </div>
+
+          <div className="col-span-2 sm:col-span-1 lg:col-span-3">
+            <h3 className={HEAD}>Contact</h3>
+            <ul className="mt-4 space-y-1 text-[0.95rem]">
+              <li><a href={telLink} className={LINK}><Phone className="h-4 w-4 shrink-0 text-sun" />{SITE.phoneDisplay || 'Call us'}</a></li>
+              <li><a href={waLink()} target="_blank" rel="noopener" className={LINK}><WhatsAppIcon className="h-4 w-4 shrink-0 text-sun" />WhatsApp</a></li>
+              {SITE.email && <li><a href={`mailto:${SITE.email}`} className={`${LINK} break-all`}><Mail className="h-4 w-4 shrink-0 text-sun" />{SITE.email}</a></li>}
+            </ul>
           </div>
         </div>
 
@@ -68,7 +84,7 @@ export function Footer() {
           Superior
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 text-[0.85rem] text-white/50">
+        <div className="mt-8 flex flex-col gap-2 border-t border-white/10 pt-6 text-[0.85rem] text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>© {YEAR} Superior Classes. All rights reserved.</p>
           <p>Chhatrapati Sambhajinagar, Maharashtra</p>
         </div>

@@ -1,12 +1,9 @@
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Formula from './components/Formula'
-import Worlds from './components/Worlds'
 import Story from './components/Story'
 import Approach from './components/Approach'
 import Research from './components/Research'
-import Gallery from './components/Gallery'
-import Voices from './components/Voices'
 import Vision from './components/Vision'
 import Contact from './components/Contact'
 import { Footer, MobileBar, WhatsAppFab } from './components/Footer'
@@ -26,12 +23,9 @@ export default function App() {
       <main id="main">
         <Hero />
         <Formula />
-        <Worlds />
         <Story />
         <Approach />
         <Research />
-        <Gallery />
-        <Voices />
         <Vision />
         <Contact />
       </main>

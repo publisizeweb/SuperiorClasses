@@ -3,18 +3,20 @@
    ===================================================================== */
 export const SITE = {
   name: 'Superior Classes',
-  whatsapp: '910000000000', // REPLACE: country code + number, digits only (e.g. 919876543210)
-  phone: '+910000000000', // REPLACE: used by every "Call" button
-  phoneDisplay: '', // optional, e.g. '+91 98765 43210'
-  email: '', // optional, e.g. 'hello@superiorclasses.in'
+  whatsapp: '919923096903', // country code + number, digits only: used by every WhatsApp button and the enquiry form
+  phone: '+919923096903', // used by every "Call" button
+  phoneDisplay: '+91 99230 96903', // shown next to the Call buttons
+  email: 'soneeka@superiorclasses.in', // shown in the footer
   instagram: 'https://www.instagram.com/superior_classes_3/', // optional full URLs: icons appear in the footer when set
   facebook: '',
   youtube: '',
-  address: ['Suraj Apartment, Opposite BSNL Office,', 'Town Center, Chhatrapati Sambhajinagar,', 'Maharashtra'],
-  // Google can't pin the full street address, so the map centres on the neighbourhood.
-  // For an exact pin, paste the client's Google Maps share link into mapsLink.
-  mapsQuery: 'Town Centre, CIDCO, Chhatrapati Sambhajinagar, Maharashtra',
-  mapsLink: '',
+  directorLinkedin: 'https://www.linkedin.com/in/soneekabagade/', // under the director's bio in Our Story + footer icon
+  address: ['Suraj Apartment,', 'Opposite BSNL Office,', 'Town Center,', 'Chhatrapati Sambhajinagar,', 'Maharashtra'], // one entry per line in the footer
+  // Exact pin for the embedded map: the Suraj Palace (G-4/1, Town Centre, CIDCO) listing on Google Maps.
+  mapsLat: 19.8772872,
+  mapsLng: 75.361857,
+  mapsQuery: 'Suraj Palace, Town Centre, CIDCO, Chhatrapati Sambhajinagar, Maharashtra 431003',
+  mapsLink: 'https://maps.app.goo.gl/8jJu9Ga5iSnfLRx79',
   greeting: 'Hello Superior Classes! 👋',
 }
 
@@ -22,28 +24,19 @@ export const waLink = (text = `${SITE.greeting} I'd like to know more about Supe
   `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`
 export const telLink = `tel:${SITE.phone}`
 export const directionsLink =
-  SITE.mapsLink || `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(SITE.mapsQuery)}`
-// `ll` centres the view slightly north of the place, because the iframe is shifted up 170px (to hide
-// Google's place card) and this keeps the highlighted area in the middle of the visible map.
-export const mapEmbedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(SITE.mapsQuery)}&ll=19.8822,75.3664&z=16&output=embed`
+  SITE.mapsLink || `https://www.google.com/maps/dir/?api=1&destination=${SITE.mapsLat},${SITE.mapsLng}`
+// The iframe is shifted up 170px (to hide Google's place card), so the visible area's middle is 85px
+// below the map's centre. Centring the map 85px north of the pin puts the pin in the middle of what you see.
+const MAP_ZOOM = 17
+const latPerPx = (360 / (256 * 2 ** MAP_ZOOM)) * Math.cos((SITE.mapsLat * Math.PI) / 180)
+const mapCentreLat = (SITE.mapsLat + 85 * latPerPx).toFixed(6)
+export const mapEmbedSrc = `https://maps.google.com/maps?q=${SITE.mapsLat},${SITE.mapsLng}&ll=${mapCentreLat},${SITE.mapsLng}&z=${MAP_ZOOM}&output=embed`
 
 export const NAV = [
   { id: 'home', label: 'Home' },
-  { id: 'worlds', label: 'Worlds' },
   { id: 'story', label: 'Our Story' },
   { id: 'approach', label: 'Approach' },
-  { id: 'gallery', label: 'Gallery' },
   { id: 'contact', label: 'Contact' },
-]
-
-/* SAMPLE testimonials: replace with real words from students and parents before launch. */
-export const TESTIMONIALS = [
-  { name: 'Student', meta: 'Class 9', initial: 'A', color: '#FFB627', quote: 'I used to be scared of making mistakes. Here they are literally part of the lesson. Science finally makes sense!' },
-  { name: 'Parent', meta: 'of a Class 8 student', initial: 'P', color: '#15A858', quote: 'Our daughter comes home excited to explain what she learned. Her confidence has grown so much this year.' },
-  { name: 'Student', meta: 'Class 10', initial: 'R', color: '#4FB3F6', quote: 'We did the experiment instead of just reading the chapter. I still remember every single step.' },
-  { name: 'Parent', meta: 'of a Class 11 student', initial: 'S', color: '#FF6B57', quote: 'They really pay attention to how each child learns. That personal attention made all the difference for us.' },
-  { name: 'Student', meta: 'Class 7', initial: 'K', color: '#9B6BDE', quote: 'Art, sports AND maths in one place? Honestly the best part of my week.' },
-  { name: 'Parent', meta: 'of a Class 9 student', initial: 'M', color: '#1D4078', quote: 'Values, discipline and fun together. Exactly what we were looking for in a learning space.' },
 ]
 
 /* =====================================================================
@@ -55,7 +48,7 @@ export const TESTIMONIALS = [
    ===================================================================== */
 const T = '/photos/temp'
 export const PHOTOS = {
-  hero: { src: `${T}/group-circle.jpg`, label: 'Students in a group session', word: 'Learn', pos: '50% 60%' },
+  hero: { src: '/photos/students-group.jpg', label: 'Superior Classes students and teachers in a group photo', word: 'Learn', pos: '50% 72%' },
   heroMain: { src: `${T}/science-lab.jpg`, label: 'Students doing a science experiment', word: 'Lab', pos: '50% 40%' },
   heroSide: { src: `${T}/craft-workshop.jpg`, label: 'Hands-on craft workshop', word: 'Create', pos: '35% 50%' },
   heroSmall: { src: `${T}/board-games.jpg`, label: 'Students playing games together', word: 'Play', pos: '50% 55%' },
@@ -68,17 +61,3 @@ export const PHOTOS = {
   approach: { src: `${T}/science-lab.jpg`, label: 'Hands-on activity', word: 'Do', pos: '50% 50%' },
   campus: { src: `${T}/board-games.jpg`, label: 'Learning outdoors', word: 'Campus', pos: '50% 35%' },
 }
-
-/* Gallery strip (2 rows of 5). Temporary photos repeat with different crops. */
-export const GALLERY = [
-  { src: `${T}/science-lab.jpg`, caption: 'Lab day', word: 'Lab', pos: '50% 45%' },
-  { src: `${T}/craft-workshop.jpg`, caption: 'Craft workshop', word: 'Art', pos: '30% 50%' },
-  { src: `${T}/board-games.jpg`, caption: 'Game time', word: 'Play', pos: '50% 60%' },
-  { src: `${T}/group-circle.jpg`, caption: 'Circle time', word: 'Together', pos: '45% 65%' },
-  { src: `${T}/teacher-demo.jpg`, caption: 'Concept corner', word: 'Learn', pos: '40% 40%' },
-  { src: `${T}/teacher-demo.jpg`, caption: 'Curious minds', word: 'Ask', pos: '85% 50%' },
-  { src: `${T}/group-circle.jpg`, caption: 'Group discussion', word: 'Talk', pos: '80% 60%' },
-  { src: `${T}/craft-workshop.jpg`, caption: 'Build it yourself', word: 'Build', pos: '85% 60%' },
-  { src: `${T}/science-lab.jpg`, caption: 'Experiment in progress', word: 'Test', pos: '20% 50%' },
-  { src: `${T}/board-games.jpg`, caption: 'Teamwork', word: 'Team', pos: '20% 50%' },
-]
